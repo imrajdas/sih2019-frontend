@@ -173,24 +173,27 @@ function register(){
 
   // }
   else {
-    //   axios.post('https://ft223ffr50.execute-api.ap-south-1.amazonaws.com/test/complaint/create', data)
-    // .then(function (response) {
-    //   console.log(response);
-    //   if(response.status === 200){
-    //     Swal.fire(
-    //       'Success!',
-    //       'Complaint has been registered.',
-    //       'success'
-    //     )
-    //   }
+    let loadingText = '<div><i class="fa fa-spinner fa-spin"></i> Loading</div>';
+    let button = document.getElementById('register')
+    let originalHTML = button.innerHTML
+    button.innerHTML = loadingText
+    axios.post('https://ft223ffr50.execute-api.ap-south-1.amazonaws.com/test/complaint/create', data)
+    .then(function (response) {
+      console.log(response);
+      if(response.status === 200){
+        button.innerHTML = originalHTML
+        Swal.fire(
+          'Success!',
+          'Complaint has been registered.',
+          'success'
+        )
+      }
 
-    // })
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
-
-    setTimeout(() => console.log("Now"), 5000)
-
+    })
+    .catch(function (error) {
+      console.log(error);
+      button.innerHTML = originalHTML
+    });
   }
   
 }
