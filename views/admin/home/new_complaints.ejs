@@ -1,101 +1,110 @@
 
 <div class="row">
-	<% for(var i=0; i<data.length; i++) {%>
-		<div class="col">
-			<div class="card" id="<%= data[i].complaintid %>">
-				<div class="card-header">
-					<div class="row">
-						<div class="col">
-							<b><%= data[i].name %></b>
-						</div>
-						<div class="col">
-							<b>LIN- <%= data[i].lin %></b>
-						</div>
-					</div>
-				</div>
-				<div class="card-body">
-					<h5 class="card-title"><%= data[i].problem_category %></h5>
-					<p class="card-text"><%= data[i].complaint_desc %></p>
-				</div>
-				<div class="card-footer">
-					<div class="row">
-						<div class="col">
-							<% if(data[i].critical === true) {%>
-								<p><b>Critical</b></p>
-							<% } else { %>
-								<p><b>Normal</b></p>
-							<% } %>
-						</div>
-						<div class="col">
-							<%= data[i].created_at %>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<button onclick="approved('<%= data[i].complaintid %>')" class="btn btn-primary">Approved</button>
-						</div>
-						<div class="col">
-							<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">View More</button>
-						</div>
-					</div>
-				</div>
-			</div>
+	<% if(data.length === 0 ) {%>
+		<div class="jumbotron">
+			<h1>No Complaints</h1>
+			<p><b>You have no complaints</b></p>
 		</div>
-
-		<div class="modal" id="myModal">
-				<div class="modal-dialog">
-				  <div class="modal-content">
-			  
-					<!-- Modal Header -->
-					<div class="modal-header">
-					  <h4 class="modal-title">
-						<div class="row">
-							<div class="col">
-									<b><%= data[i].name %></b>
-							</div>
-							<div class="col">
-								<b>LIN- <%= data[i].lin %></b>
+	<% } else {%>
+		<% for(var i=0; i<data.length; i++) {%>
+				<div class="col">
+					<div class="card" id="<%= data[i].complaintid %>">
+						<div class="card-header">
+							<div class="row">
+								<div class="col">
+									<b><%= data[i].fullname %></b>
+								</div>
+								<div class="col">
+									<b>UID- <%= data[i].lin %></b>
+								</div>
 							</div>
 						</div>
-					  </h4>
-					  <button type="button" class="close" data-dismiss="modal">&times;</button>
-					</div>
-			  
-					<!-- Modal body -->
-					<div class="modal-body">
-						<h6><b>Complaint Description</b></h6>
-						<%= data[i].complaint_desc %><br><br>
-						<h6><b>Email</b></h6>
-						<%= data[i].email %><br>
-						<h6><b>Phone</b></h6>
-						<%= data[i].phone %><br>
-						<h6><b>Address</b></h6>
-						<%= data[i].address%><br>
-						<div class="row">
-							<div class="col">
-								<h6><b>Company Name</b></h6>
-								<%= data[i].company_name %><br>
+						<div class="card-body">
+							<h5 class="card-title"><%= data[i].problem_category %></h5>
+							<p class="card-text"><%= data[i].complaint_desc %></p>
+						</div>
+						<div class="card-footer">
+							<div class="row">
+								<div class="col">
+									<% if(data[i].critical === true) {%>
+										<p><b>Critical</b></p>
+									<% } else { %>
+										<p><b>Normal</b></p>
+									<% } %>
+								</div>
+								<div class="col">
+									<%= data[i].created_at %>
+								</div>
 							</div>
-							<div class="col">
-								<h6><b>Position/Rank</b></h6>
-								<%= data[i].position %><br>
-	
+							<div class="row">
+								<div class="col">
+									<button onclick="approved('<%= data[i].complaintid %>')" class="btn btn-primary">Approved</button>
+								</div>
+								<div class="col">
+									<button type="button" onclick="decline('<%= data[i].complaintid %>')" class="btn btn-danger">Decline</button>
+								</div>
+								<div class="col">
+									<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">View</button>
+								</div>
 							</div>
 						</div>
-
 					</div>
-			  
-					<!-- Modal footer -->
-					<div class="modal-footer">
-					  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-					</div>
-			  
-				  </div>
 				</div>
-		</div>
 		
-					
-	<% } %>     
+				<div class="modal" id="myModal">
+						<div class="modal-dialog">
+						  <div class="modal-content">
+					  
+							<!-- Modal Header -->
+							<div class="modal-header">
+							  <h4 class="modal-title">
+								<div class="row">
+									<div class="col">
+											<b><%= data[i].name %></b>
+									</div>
+									<div class="col">
+										<b>LIN- <%= data[i].lin %></b>
+									</div>
+								</div>
+							  </h4>
+							  <button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+					  
+							<!-- Modal body -->
+							<div class="modal-body">
+								<h6><b>Complaint Description</b></h6>
+								<%= data[i].complaint_desc %><br><br>
+								<h6><b>Email</b></h6>
+								<%= data[i].email %><br>
+								<h6><b>Phone</b></h6>
+								<%= data[i].phone %><br>
+								<h6><b>Address</b></h6>
+								<%= data[i].address%><br>
+								<div class="row">
+									<div class="col">
+										<h6><b>Company Name</b></h6>
+										<%= data[i].company_name %><br>
+									</div>
+									<div class="col">
+										<h6><b>Position/Rank</b></h6>
+										<%= data[i].position %><br>
+			
+									</div>
+								</div>
+		
+							</div>
+					  
+							<!-- Modal footer -->
+							<div class="modal-footer">
+							  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+							</div>
+					  
+						  </div>
+						</div>
+				</div>
+		<% } %>     
+	<% } %>
+	
 </div>
 
 	  

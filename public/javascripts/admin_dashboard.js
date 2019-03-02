@@ -29,7 +29,7 @@ function addOfficier(){
 
     console.log(data.postedfrom)
 
-    axios.post('https://ft223ffr50.execute-api.ap-south-1.amazonaws.com/test/add/officier', data)
+    axios.post('https://uj2iaytcuj.execute-api.ap-south-1.amazonaws.com/test/add/officier', data)
     .then(function (response) {
       console.log(response);
       if(response.status === 200){

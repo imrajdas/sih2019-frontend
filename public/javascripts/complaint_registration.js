@@ -81,8 +81,8 @@ window.onload=function(){
 function register(){
 
   var data = {
+    fullname: document.getElementById('fullname').value,
     lin: document.getElementById('lin').value,
-    fullname: document.getElementById('fullname').value, 
     email: document.getElementById('email').value,
     phone: document.getElementById('phone').value, 
     address: document.getElementById('address').value,
@@ -144,7 +144,7 @@ function register(){
 
   // }
   else {
-      axios.post('https://ft223ffr50.execute-api.ap-south-1.amazonaws.com/test/complaint/create', data)
+      axios.post('https://uj2iaytcuj.execute-api.ap-south-1.amazonaws.com/test/complaint/create', data)
     .then(function (response) {
       console.log(response);
       if(response.status === 200){
