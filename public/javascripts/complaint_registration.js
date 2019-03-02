@@ -8,6 +8,15 @@ $('#no').click(function(){
   $('#union').fadeOut('slow');
 })
 
+$('#email_form').hide('fast')
+
+$('#email_yes').click(function(){
+  $('#email_form').fadeIn('slow');
+})
+
+$('#email_no').click(function(){
+  $('#email_form').fadeOut('slow');
+})
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
 }
@@ -125,7 +134,7 @@ function register(){
     union_leader: document.getElementById('union_leader').value
   }
   
-  if(!data.lin || !data.fullname || !data.email || !data.phone || !data.address || !data.district || !data.state || !data.pincode || !data.company || !data.rank || !data.complaint_desc){
+  if(!data.lin || !data.fullname  || !data.phone || !data.address || !data.district || !data.state || !data.pincode || !data.company || !data.rank || !data.complaint_desc){
     var div = document.createElement('div');
 
     div.innerHTML = '<div id="danger-alert" class="alert alert-danger alert-dismissible fade show" role="alert"><strong>Please Fill the red highlighted inputs!</strong> You should check in on some of those fields below.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>'
@@ -135,8 +144,6 @@ function register(){
       document.getElementById('lin').style.borderColor = "red";
     if(!data.fullname)
       document.getElementById('fullname').style.borderColor = "red";
-    if(!data.email)
-      document.getElementById('email').style.borderColor = "red";
     if(!data.phone)
       document.getElementById('phone').style.borderColor = "red";
     if(!data.address)
@@ -162,7 +169,6 @@ function register(){
     document.getElementById('union_name').style.borderColor = "red";
     if(!data.union_leader)
       document.getElementById('union_leader').style.borderColor = "red";
-
   }
   
   
@@ -173,15 +179,12 @@ function register(){
 
   // }
   else {
-<<<<<<< HEAD
-      axios.post('https://uj2iaytcuj.execute-api.ap-south-1.amazonaws.com/test/complaint/create', data)
-=======
     let loadingText = '<div><i class="fa fa-spinner fa-spin"></i> Loading</div>';
     let button = document.getElementById('register')
     let originalHTML = button.innerHTML
     button.innerHTML = loadingText
-    axios.post('https://ft223ffr50.execute-api.ap-south-1.amazonaws.com/test/complaint/create', data)
->>>>>>> a271cf70e18ebdd22edf127687e33a4139228057
+    
+    axios.post('https://uj2iaytcuj.execute-api.ap-south-1.amazonaws.com/test/complaint/create', data)
     .then(function (response) {
       console.log(response);
       if(response.status === 200){

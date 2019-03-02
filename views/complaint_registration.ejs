@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col">
                 <div class="form-group">
-                    <label for="lin"><b>Enter your UID (Unique Identification)</b></label>
+                    <label for="lin"><b>Enter your UAN (Unique Account Number)</b></label>
                     <input class="form-control" type="text" id="lin">
                 </div>
             </div>
@@ -40,25 +40,42 @@
         <div class="row">
             <div class="col">
                 <div class="form-group">
+                        <label><b>Do you have a email?  </b></label>
+                        <label class="radio-inline"><input type="radio" name="optradio" value="email_yes" id="email_yes">Yes </label>
+                        <label class="radio-inline"><input type="radio" name="optradio" value="email_no" id="email_no" checked>No</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group" id="email_form">
                     <label for="email"><b>Email</b></label>
                     <input class="form-control" type="text" id="email">
                 </div>
             </div>
+        </div>
+        
+        
+        
+
+        <div class="row">
             <div class="col">                        
+                    <div class="form-group">
+                        <label for="phone"><b>Phone Number</b></label>
+                        <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">+91</span>
+                                <input class="form-control" type="number" id="phone">
+                        </div>    
+                    </div>
+            </div>
+            <div class="col">
                 <div class="form-group">
-                    <label for="phone"><b>Phone Number</b></label>
-                    <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">+91</span>
-                            <input class="form-control" type="number" id="phone">
-                    </div>    
+                        <label for="address"><b>Address</b></label>
+                        <input class="form-control" type="text" id="address">
                 </div>
             </div>
+            
         </div>
 
-        <div class="form-group">
-                <label for="address"><b>Address</b></label>
-                <input class="form-control" type="text" id="address">
-        </div>
+        
 
         <div class="row">
             <div class="col">
