@@ -24,6 +24,20 @@ var componentForm = {
 };
 
 window.onload=function(){
+  if(navigator && navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      let coords = position.coords;
+      let geocoder = new google.maps.Geocoder
+      geocoder.geocode({ 'location': { lat: coords.latitude, lng: coords.longitude }}, function(results, status) {
+        if(status === "OK" && results[0]) {
+          let input = document.getElementById('address')
+          input.value = results[0].formatted_address
+        }
+      })
+    }, function(obj) {
+      console.log("Not allowed")
+    })
+  }
   document.getElementById('register').addEventListener('click', register)
   document.getElementById('lin').addEventListener('click', function(){
     document.getElementById('lin').style.borderColor = "lightgray"
