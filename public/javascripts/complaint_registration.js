@@ -32,6 +32,21 @@ window.onload=function(){
         if(status === "OK" && results[0]) {
           let input = document.getElementById('address')
           input.value = results[0].formatted_address
+
+          let splitted = results[0].formatted_address.split(",")
+
+          let length = splitted.length
+          // district
+          let district = splitted[length-3]
+
+          // state
+          let stateWithPin = splitted[length-2]
+          let state = stateWithPin.trim().split(" ")[0]
+          let pincode = stateWithPin.trim().split(" ")[1]
+
+          document.getElementById('district').value = district
+          document.getElementById('state').value = state
+          document.getElementById('pincode').value = pincode
         }
       })
     }, function(obj) {
