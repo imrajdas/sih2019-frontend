@@ -93,4 +93,45 @@ router.get('/logout', function(req, res, next){
     res.redirect('/admin/login')
 })
 
+router.get('/dashboard', checkAuth, function(req, res, next){
+    const user = store.get('user')
+
+    res.render('dashboard', {title: 'dashboard'})
+})
+
+router.get('/process', checkAuth, function(req, res, next){
+    const user = store.get('user')
+
+    const params = {
+        type: 2
+    }
+
+    axios.post(`https://uj2iaytcuj.execute-api.ap-south-1.amazonaws.com/test/list/complaints/${user.officierid}`, params)
+    .then(function (response) {
+      console.log('response_home',response.data.message);
+      res.render('process', { title: 'Processing complaints', data: response.data.message});
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+})
+
+router.get('/closed', checkAuth, function(req, res, next){
+    const user = store.get('user')
+
+    const params = {
+        type: 3
+    }
+
+    axios.post(`https://uj2iaytcuj.execute-api.ap-south-1.amazonaws.com/test/list/complaints/${user.officierid}`, params)
+    .then(function (response) {
+      console.log('response_home',response.data.message);
+      res.render('closed', { title: 'Closed Complaints', data: response.data.message});
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+})
+
 module.exports = router;

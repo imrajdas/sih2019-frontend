@@ -2,8 +2,8 @@
 <div class="row">
 	<% if(data.length === 0 ) {%>
 		<div class="jumbotron">
-			<h1>No Complaints</h1>
-			<p><b>You have no complaints</b></p>
+			<h1>No Processing Complaints</h1>
+			<p><b>You have no Processing complaints</b></p>
 		</div>
 	<% } else {%>
 		<% for(var i=0; i<data.length; i++) {%>
@@ -38,10 +38,7 @@
 							</div>
 							<div class="row">
 								<div class="col">
-									<button onclick="approved('<%= data[i].complaintid %>')" class="btn btn-primary">Approved</button>
-								</div>
-								<div class="col">
-									<button type="button" onclick="decline('<%= data[i].complaintid %>')" class="btn btn-danger">Decline</button>
+									<button onclick="Closed('<%= data[i].complaintid %>')" class="btn btn-primary">Clossed Complaint</button>
 								</div>
 								<div class="col">
 									<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">View</button>
