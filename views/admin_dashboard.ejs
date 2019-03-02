@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfx7aC-7ITrwQs3F7eUViFIIThgWwc0xA&libraries=places"
+    async defer></script>
+    <link rel='stylesheet' href='/stylesheets/admin_home.css' />
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+
+  </head>
+  <body >
+        <style>
+            .pac-container {
+                z-index: 10000 !important;
+            }
+        </style>
+    <div class="container">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Add Authority Officier</button>
+        
+              
+        <div class="modal" id="myModal">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                  
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                          <h4 class="modal-title">
+                              <b>Add Authority Officier</b>
+                          </h4>
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                  
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                            <label for="firstname"><b>First Name</b></label>
+                                            <input class="form-control" type="text" id="firstname">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                        <div class="form-group">
+                                                <label for="lastname"><b>Last Name</b></label>
+                                                <input class="form-control" type="text" id="lastname">
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                    <label for="rank"><b>Designation/Rank</b></label>
+                                    <input class="form-control" type="text" id="rank">
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                            <label for="postedfrom"><b>Posted from</b></label>
+                                            <input type='date' class="form-control" id="postedfrom" />
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                            <label for="postingarea"><b>Posting Area</b></label>
+                                            <input class="form-control" type="text" id="postingarea">
+                                    </div>
+        
+                                </div>
+    
+                            </div>                            
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                            <label for="postingarea"><b>Posting State</b></label>
+                                            <input class="form-control" type="text" id="state">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                            <label for="postingarea"><b>Posting District</b></label>
+                                            <input class="form-control" type="text" id="district">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                        <div class="form-group">
+                                                <label for="postingarea"><b>Posting Pincode</b></label>
+                                                <input class="form-control" type="text" id="pincode">
+                                        </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="rank"><b>Email</b></label>
+                                        <input class="form-control" type="text" id="email">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="rank"><b>Phone</b></label>
+                                        <input class="form-control" type="text" id="phone">
+                                    </div>
+                                </div>
+    
+                            </div>
+
+                        </div>
+                  
+                        <!-- Modal footer -->
+                        <!-- <div class="spinner-border" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div> -->
+                        <div class="modal-footer">
+                          <div class="row">
+                              <div class="col">
+                                    <button type="button" class="btn btn-success" onclick="addOfficier()">Add</button>
+                              </div>
+                              <div class="col">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                              </div>
+                          </div>
+                        </div>
+                  
+                      </div>
+                    </div>
+        </div>
+            
+        <div class="row">
+                <% for(var i=0; i<data.length; i++) {%>
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <b><%= data[i].firstname + " " +data[i].lastname %></b>
+                                </div>
+                            </div>
+                            
+                            <div class="card-body">
+                                <h5><b>Designation/Rank</b><h5>
+                                <h5 class="card-title"><%= data[i].rank %></h5>
+                                <h5><b>Positing Area</b><h5>
+                                <p class="card-text"><%= data[i].postingarea %></p>
+                                <h5><b>Posted From</b><h5>
+                                <p class="card-text"><%= data[i].postedfrom %></p>
+                                <h5><b>Email</b><h5>
+                                <p class="card-text"><%= data[i].email %></p>
+                                <h5><b>Phone</b><h5>
+                                <p class="card-text"><%= data[i].phone %></p>
+                        
+                            </div>
+                            <div class="card-footer">
+                                    <button type="button" class="btn btn-primary" >View Complaints</button>
+                            </div>
+                         </div>
+                    </div>
+                    <% } %>     
+
+        </div>
+        
+        
+                  
+                                
+            
+    </div>
+
+    <script src="/javascripts/admin_dashboard.js"></script>
+  </body>
+</html>
