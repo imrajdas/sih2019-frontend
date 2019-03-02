@@ -1,9 +1,13 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
     
 .....
 
 
     
+=======
+                    hi
+>>>>>>> 9df05e36e8dc4cf16eb1fd01c1fec41dd4749f80
 =======
 <!--   THE PHOENIX TECH-->
 <!--   SK1-->
