@@ -24,35 +24,6 @@ var componentForm = {
 };
 
 window.onload=function(){
-  if(navigator && navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      let coords = position.coords;
-      let geocoder = new google.maps.Geocoder
-      geocoder.geocode({ 'location': { lat: coords.latitude, lng: coords.longitude }}, function(results, status) {
-        if(status === "OK" && results[0]) {
-          let input = document.getElementById('address')
-          input.value = results[0].formatted_address
-
-          let splitted = results[0].formatted_address.split(",")
-
-          let length = splitted.length
-          // district
-          let district = splitted[length-3]
-
-          // state
-          let stateWithPin = splitted[length-2]
-          let state = stateWithPin.trim().split(" ")[0]
-          let pincode = stateWithPin.trim().split(" ")[1]
-
-          document.getElementById('district').value = district
-          document.getElementById('state').value = state
-          document.getElementById('pincode').value = pincode
-        }
-      })
-    }, function(obj) {
-      console.log("Not allowed")
-    })
-  }
   document.getElementById('register').addEventListener('click', register)
   document.getElementById('lin').addEventListener('click', function(){
     document.getElementById('lin').style.borderColor = "lightgray"
@@ -70,6 +41,35 @@ window.onload=function(){
   })
   document.getElementById('address').addEventListener('click', function(){
     document.getElementById('address').style.borderColor = "lightgray"
+    if(navigator && navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        let coords = position.coords;
+        let geocoder = new google.maps.Geocoder
+        geocoder.geocode({ 'location': { lat: coords.latitude, lng: coords.longitude }}, function(results, status) {
+          if(status === "OK" && results[0]) {
+            let input = document.getElementById('address')
+            input.value = results[0].formatted_address
+  
+            let splitted = results[0].formatted_address.split(",")
+  
+            let length = splitted.length
+            // district
+            let district = splitted[length-3]
+  
+            // state
+            let stateWithPin = splitted[length-2]
+            let state = stateWithPin.trim().split(" ")[0]
+            let pincode = stateWithPin.trim().split(" ")[1]
+  
+            document.getElementById('district').value = district
+            document.getElementById('state').value = state
+            document.getElementById('pincode').value = pincode
+          }
+        })
+      }, function(obj) {
+        initAutocomplete()
+      })
+    }
     initAutocomplete()
 
   })
@@ -173,21 +173,23 @@ function register(){
 
   // }
   else {
-      axios.post('https://ft223ffr50.execute-api.ap-south-1.amazonaws.com/test/complaint/create', data)
-    .then(function (response) {
-      console.log(response);
-      if(response.status === 200){
-        Swal.fire(
-          'Success!',
-          'Complaint has been registered.',
-          'success'
-        )
-      }
+    //   axios.post('https://ft223ffr50.execute-api.ap-south-1.amazonaws.com/test/complaint/create', data)
+    // .then(function (response) {
+    //   console.log(response);
+    //   if(response.status === 200){
+    //     Swal.fire(
+    //       'Success!',
+    //       'Complaint has been registered.',
+    //       'success'
+    //     )
+    //   }
 
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
+
+    setTimeout(() => console.log("Now"), 5000)
 
   }
   
