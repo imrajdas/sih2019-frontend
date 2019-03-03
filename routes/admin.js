@@ -88,6 +88,11 @@ router.get('/dashboard', function(req, res, next){
     res.render('admin_dashboard', { title: 'Admin Dashboard', data: data })
 })
 
+router.get('/dum_complaint', function(req, res, next){
+    
+    res.render('dum_complaint', { title: 'Admin Dashboard', data: 'hi' })
+})
+
 router.get('/logout', function(req, res, next){
     store.set('valid', 'false')
     res.redirect('/admin/login')

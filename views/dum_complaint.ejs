@@ -14,20 +14,24 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-
+    <style>
+        #t{
+            margin-top: 20px;
+        }
+    </style>
   </head>
   <body >
     <% include index/nav_bar.ejs %>
     <div class="row" id="t">
-            <div class="col">
-                <div class="" id="google_translate_element"></div>
-            </div>
-            <div class="col">
-                <button class="btn btn-primary" id="start-record-btn">Start Voice Register</button>
-            </div>
-            <div class="col">
-                <button class="btn btn-danger" id="pause-record-btn">Stop Voice Registration</button>
-            </div>
+        <div class="col">
+            <div class="" id="google_translate_element"></div>
+        </div>
+        <div class="col">
+            <button class="btn btn-primary" id="start-record-btn">Start Voice Register</button>
+        </div>
+        <div class="col">
+            <button class="btn btn-danger" id="pause-record-btn">Stop Voice Registration</button>
+        </div>
     </div>
 
     <div class="container" style="margin-top:20px;">
@@ -36,7 +40,7 @@
             <div class="col">
                 <div class="form-group">
                     <label for="lin"><b>Enter your UAN (Unique Account Number)</b></label>
-                    <input class="form-control" type="text" id="lin">
+                    <input class="form-control" type="text" id="lin" x-webkit-speech />
                 </div>
             </div>
             <div class="col">
@@ -162,7 +166,7 @@
         <br>
         <button class="btn btn-primary" id="register">Register Complaint</button>
 
-    <script src="/javascripts/complaint_registration.js"></script>
+    <script src="/javascripts/dum_complaint.js"></script>
     </div>
   </body>
 </html>
