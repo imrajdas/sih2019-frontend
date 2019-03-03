@@ -2,26 +2,41 @@
 <html>
   <head>
     <title><%= title %></title>
-    <!-- <link rel='stylesheet' href='/stylesheets/style.css' /> -->
-    <link rel='stylesheet' href='/stylesheets/admin_login.css' />
+    <!-- <link rel='stylesheet' href='/stylesheets/style.css' />  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel='stylesheet' href='/stylesheets/admin_home.css' />
+    
 
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="/javascripts/admin_complaint_status.css.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfx7aC-7ITrwQs3F7eUViFIIThgWwc0xA&libraries=places"
+    async defer></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
   </head>
   <body >
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    
-    <div class="admin_form">
-        <form action="" class="w3-container">
-            
-                          
-            <label class="w3-text-blue"><b>Enter your Complaint Id</b></label>
-            <input class="w3-input w3-border" type="text">
-            
-            <br>
-            <button class="w3-btn w3-blue">Query</button>
+        <% include admin/home/nav_bar.ejs %>
+        <div class="container">
 
-        </form>
-    </div>
+            <form action="/admim/complaint/status">
+                <div class="form-group">
+                  <label for="complaintid">Enter you complaintId</label>
+                  <input type="text" id="complaintid" name="complaintid" class="form-control">
+                </div>
+                <div class="form-group">
+                  <button type="button" onclick="search()" class="btn btn-success">Search</button>
+                </div>
+              </div>
+            </form>
+
+        </div>
+        
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/javascripts/admin_home.js"></script>
+    
   </body>
 </html>
