@@ -134,4 +134,38 @@ router.get('/closed', checkAuth, function(req, res, next){
     });
 })
 
+router.post('/closed', function(req, res, next){
+    console.log(req.body);
+    const data ={
+        type: 4,
+        complaintid: req.body.complaintid,
+        closing_statement: req.body.closing_statement,
+        report_file: req.body.file
+    }
+    console.log(data);
+    
+    axios.put(`https://uj2iaytcuj.execute-api.ap-south-1.amazonaws.com/test/complaint/update/1`, data)
+    .then(function (response) {
+      console.log('response_home',response.data.message);
+      res.redirect('/admin/process')
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    
+})
+
+router.post('/labour/contact', function(req, res, next){
+    console.log(req.body);
+    const msg = req.body.sms
+    const url = `http://login.smsadda.com/API/pushsms.aspx?loginID=giit&password=giitpc&mobile=+91${req.body.phone}&text=${msg}&senderid=GIITPC&route_id=1&Unicode=0`
+
+    axios.get(url).then(function(response){
+        console.log(response);
+    })
+    .catch(function(err){
+        console.log(err);
+    })
+    
+})
 module.exports = router;

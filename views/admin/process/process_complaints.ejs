@@ -15,7 +15,7 @@
 									<b><%= data[i].name %></b>
 								</div>
 								<div class="col">
-									<b>UID- <%= data[i].lin %></b>
+									<b>UAN- <%= data[i].lin %></b>
 								</div>
 							</div>
 						</div>
@@ -41,7 +41,10 @@
 									<button onclick="Closed('<%= data[i].complaintid %>')" class="btn btn-primary" class="btn btn-primary" data-toggle="modal" data-target="#closedModal">Clossed Complaint</button>
 								</div>
 								<div class="col">
-									<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">View</button>
+										<button type="button" class="btn btn-info" data-toggle="modal" data-target="#contact">Contact labour</button>
+								</div>
+								<div class="col">
+									<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">View More</button>
 								</div>
 							</div>
 						</div>
@@ -109,7 +112,7 @@
 							  <h4 class="modal-title">
 								<div class="row">
 									<div class="col">
-										<b>Closing Report report</b>
+										<b>Closing Report</b>
 									</div>
 								</div>
 							  </h4>
@@ -118,22 +121,86 @@
 					  
 							<!-- Modal body -->
 							<div class="modal-body">
-								<div class="form-group">
-									<label for="complaint_desc"><b>Closing report Statement</b></label>
-									<textarea class="form-control" id="closing comments" rows="10"></textarea>
-								</div>
-								<div class="form-group">
-										<label for="complaint_desc"><b>Upload Documents/Reports</b></label>
-										<input class="form-control-file" type="file" />
-								</div>
+								<form action="/admin/closed" method="post">
+										<div class="form-group">
+												<label for="closing_statement"><b>Closing report Statement</b></label>
+												<input type="hidden" name="complaintid" value="<%= data[i].complaintid %>">
+												<textarea class="form-control" name="closing_statement" id="closing_statement" rows="10"></textarea>
+											</div>
+											<div class="form-group">
+													<label for="file"><b>Upload Documents/Reports</b></label>
+													<input class="form-control-file" id="file" name="file" type="file" />
+											</div>
+			
 							</div>
 
 
 					  
 							<!-- Modal footer -->
 							<div class="modal-footer">
-							  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+							<div class="row">
+								<div class="col">
+									<button type="submit" class="btn btn-success">Submit</button>
+								</div>
+								<div class="col">
+										<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+								</div>
 							</div>
+							</div>
+						</form>
+
+					  
+						  </div>
+						</div>
+				</div>
+
+				<div class="modal" id="contact">
+						<div class="modal-dialog">
+						  <div class="modal-content">
+					  
+							<!-- Modal Header -->
+							<div class="modal-header">
+							  <h4 class="modal-title">
+								<div class="row">
+									<div class="col">
+										<b>Contact Labour</b>
+									</div>
+								</div>
+							  </h4>
+							  <button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+					  
+							<!-- Modal body -->
+							<div class="modal-body">
+								<form action="/admin/labour/contact" method="post">
+
+										<div class="form-group">
+											<label for="disabledInput">Labour Contact no</label>
+											<input class="form-control" id="phone" type="text" name="phone" value="<%= data[i].phone %>"/>
+										</div>
+								
+										<div class="form-group">
+												<label for="file"><b>Enter the message</b></label>
+												<textarea class="form-control-file" id="sms" name="sms" type="text" rows="10"></textarea>
+										</div>
+								
+							</div>
+
+
+					  
+							<!-- Modal footer -->
+								<div class="modal-footer">
+									<div class="row">
+											<div class="col">
+												<button type="submit" class="btn btn-success">Submit</button>
+											</div>
+											<div class="col">
+													<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+											</div>
+									</div>
+								</div>
+						</form>
+
 					  
 						  </div>
 						</div>

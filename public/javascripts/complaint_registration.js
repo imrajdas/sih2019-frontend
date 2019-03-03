@@ -131,10 +131,13 @@ function register(){
     rank: document.getElementById('rank').value, 
     complaint_desc: document.getElementById('complaint_desc').value,
     union_name: document.getElementById('union_name').value,
-    union_leader: document.getElementById('union_leader').value
+    union_leader: document.getElementById('union_leader').value,
+    complaint_subject: document.getElementById('complaint_subject').value
   }
   
-  if(!data.lin || !data.fullname  || !data.phone || !data.address || !data.district || !data.state || !data.pincode || !data.company || !data.rank || !data.complaint_desc){
+  console.log(data);
+  
+  if(!data.lin || !data.fullname  || !data.phone || !data.address || !data.district || !data.state || !data.pincode || !data.company || !data.rank || !data.complaint_desc || !data.complaint_subject){
     var div = document.createElement('div');
 
     div.innerHTML = '<div id="danger-alert" class="alert alert-danger alert-dismissible fade show" role="alert"><strong>Please Fill the red highlighted inputs!</strong> You should check in on some of those fields below.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>'
@@ -161,6 +164,9 @@ function register(){
     if(!data.complaint_desc)
       document.getElementById('complaint_desc').style.borderColor = "red";
 
+    if(!data.complaint_subject)
+      document.getElementById('complaint_desc').style.borderColor = "red";
+
 
   }
 
@@ -172,12 +178,7 @@ function register(){
   }
   
   
-  // if(parseIntdocument.getElementById('phone').value != 10){
-  //   var div = document.createElement('div');
-  //   div.innerHTML = '<div id="danger-alert" class="alert alert-danger alert-dismissible fade show" role="alert"><strong>Invalid Phone no!</strong> Phone number must be of 10 digits<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>'
-  //   document.getElementById("danger-alert").appendChild(div);
-
-  // }
+  
   else {
     let loadingText = '<div><i class="fa fa-spinner fa-spin"></i> Loading</div>';
     let button = document.getElementById('register')

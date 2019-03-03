@@ -44,7 +44,10 @@
 									<button type="button" onclick="decline('<%= data[i].complaintid %>')" class="btn btn-danger">Decline</button>
 								</div>
 								<div class="col">
-									<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">View</button>
+									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#transferModal">Transfer</button>
+								</div>
+								<div class="col">
+									<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">View More</button>
 								</div>
 							</div>
 						</div>
@@ -63,7 +66,7 @@
 											<b><%= data[i].name %></b>
 									</div>
 									<div class="col">
-										<b>LIN- <%= data[i].lin %></b>
+										<b>UAN- <%= data[i].lin %></b>
 									</div>
 								</div>
 							  </h4>
@@ -78,6 +81,7 @@
 								<%= data[i].email %><br>
 								<h6><b>Phone</b></h6>
 								<%= data[i].phone %><br>
+								<input type="hidden" id= "phone"  value= "<%= data[i].phone %>" />
 								<h6><b>Address</b></h6>
 								<%= data[i].address%><br>
 								<div class="row">
@@ -102,6 +106,57 @@
 						  </div>
 						</div>
 				</div>
+				<div class="modal" id="transferModal">
+					<div class="modal-dialog">
+					  <div class="modal-content">
+				  
+						<!-- Modal Header -->
+						<div class="modal-header">
+						  <h4 class="modal-title">
+							<p><b>Transfer the complaint</b></p>
+						  </h4>
+						  <button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+				  
+						<!-- Modal body -->
+						<div class="modal-body">
+							<input type="hidden" id= "complaintid"  value= "<%= data[i].complaintid %>" />
+							<input type="hidden" id= "officierid"  value= "<%= data[i].officierid %>" />
+							<div class="row">
+								<div class="col">
+									<div class="form-group">
+										<input class="form-control" type="text" id="inspector_name" placeholder="Enter the inspector name"/>
+									</div>
+								</div>
+								<div class="col">
+									<div class="form-group">
+										<input class="form-control" type="text" id="area" name="area" placeholder="Enter the Area"/>
+									</div>
+								</div>
+								<div class="col">
+									<div class="form-group">
+										<input class="btn btn-primary" type="button" value="Search" placeholder="Enter the Area" onclick="search()"/>
+									</div>
+								</div>
+							</div>
+							<div class="list-group" id="search_result"></div>
+						</div>
+				  
+						<!-- Modal footer -->
+						<div class="modal-footer">
+							<div class="row">
+								<div class="col">
+										<button type="button" class="btn btn-primary">Transfer</button>
+								</div>
+								<div class="col">
+										<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+				  
+					  </div>
+					</div>
+			</div>
 		<% } %>     
 	<% } %>
 	
